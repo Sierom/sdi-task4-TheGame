@@ -77,6 +77,7 @@ class preloadGame extends Phaser.Scene{
         this.load.image("start", "asset/start.png");    //852x480
         this.load.image("gameOver", "asset/gameover.png");
         this.load.image("platform", "asset/platform.png");
+        this.load.image("background", "asset/background.png");
 
         // player is a sprite sheet made by 117x26 pixels
         this.load.spritesheet("player", "asset/player.png", {
@@ -224,6 +225,7 @@ class playGame extends Phaser.Scene{
         super("PlayGame");
     }
     create(){
+        this.add.image(650, 350, "background").setScale(3, 3);
         /*====================================
         ===============Platform===============
         ====================================*/
@@ -428,10 +430,10 @@ class playGame extends Phaser.Scene{
 
     attack(){
         this.bullet.setActive(true).setVisible(true);
+        this.soundShoot.play();
         this.player.anims.play("shoot");
         this.bullet.anims.play("bullet");
-        this.soundShoot.play();
-        this.player.once('animationcomplete', function(){ ///this refers to an arcade sprite.
+        this.player.once('animationcomplete', function(){ //this refers to an arcade sprite.
             this.player.anims.play("run");
             this.bullet.setActive(false).setVisible(false);
             this.soundReload.play();

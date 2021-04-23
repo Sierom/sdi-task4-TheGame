@@ -93,6 +93,3 @@ function setLED(t){
   }
 }
 
-function loadGame(){
-    //
-}
